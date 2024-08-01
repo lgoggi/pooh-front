@@ -2,13 +2,13 @@ import { styled } from "styled-components/native";
 
 export const Button = styled.Pressable`
   align-items: center;
-  background-color: #12CDD9;
+  background-color: ${(props) => props.theme.color.primary};
   padding: 16px 24px;
   border-radius: 9999px;
 `
 
 export const Text = styled.Text`
-  color: white;
-  font-weight: 500;
-  font-size: 20px;
+  color: ${(props) => props.theme.color.backgroundColor};
+  font-weight: 600;
+  font-size:${(props) => props.theme.fontSize.big};
 `
