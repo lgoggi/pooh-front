@@ -5,13 +5,12 @@ interface IProps {
   action: () => void;
 }
 
-const CustomButton = ({text, action}: IProps) => {
-  return(
+const CustomButton = ({ text, action }: IProps) => {
+  return (
     <Button onPress={action}>
       <Text>{text}</Text>
     </Button>
-  )
-}
-
+  );
+};
 
 export default CustomButton;
