@@ -3,11 +3,12 @@ import { Button, Text } from "./styles";
 interface IProps {
   text: string;
   action: () => void;
+  disabled?: boolean;
 }
 
-const CustomButton = ({ text, action }: IProps) => {
+const CustomButton = ({ text, action, disabled = false }: IProps) => {
   return (
-    <Button onPress={action}>
+    <Button onPress={action} disabled={disabled}>
       <Text>{text}</Text>
     </Button>
   );

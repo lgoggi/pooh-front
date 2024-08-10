@@ -1,5 +1,5 @@
 import React from "react";
-import { SafeAreaView, StyleSheet } from "react-native";
+import { SafeAreaView, ScrollView, StyleSheet } from "react-native";
 import Login from "./src/screens/Login";
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/styles/theme";
@@ -12,16 +12,16 @@ export type RootStackParamList = {};
 const Stack = createNativeStackNavigator();
 function App(): React.JSX.Element {
   return (
-    <NavigationContainer>
-      <ThemeProvider theme={theme}>
-        <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <NavigationContainer>
+        <ThemeProvider theme={theme}>
           <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="login" component={Login} />
             <Stack.Screen name="signup" component={Signup} />
           </Stack.Navigator>
-        </SafeAreaView>
-      </ThemeProvider>
-    </NavigationContainer>
+        </ThemeProvider>
+      </NavigationContainer>
+    </SafeAreaView>
   );
 }
 

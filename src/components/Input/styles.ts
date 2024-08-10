@@ -13,9 +13,9 @@ export const Label = styled.Text`
   z-index: 1;
 `
 
-export const UserInput = styled.TextInput`
+export const UserInput = styled.TextInput<{error: boolean;}>`
   background-color: ${(props) => props.theme.color.backgroundColor};
-  border-color: ${(props) => props.theme.color.secondary};
+  border-color: ${(props) => props.error ? props.theme.color.error : props.theme.color.secondary};
   border-radius: 9999px;
   border-width: 1px;
   color: ${(props) => props.theme.color.secondary};
