@@ -6,6 +6,8 @@ import { UsersFormContainer } from "../components/UsersForm/UsersFormContainer";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../App";
 import userMask from "../utils/masks/userMask";
+import { Text } from "react-native";
+import ErrorMessage from "../components/ErrorMessage";
 
 function Signup({
   navigation,
@@ -25,24 +27,37 @@ function Signup({
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+  const [messageError, setMessageError] = useState<string | boolean>(false);
 
   const handleSignup = async () => {
     if (!enableRequest) {
       return;
     }
-
-    const request = await fetch(`${API_URL}/api/auth/signup`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: username,
-        email: email,
-        password: password,
-      }),
-    });
+    setMessageError(false);
+    try {
+      const response = await fetch(`${API_URL}/api/auth/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: username,
+          email: email,
+          password: password,
+        }),
+      });
+      if (response.status !== 200) {
+        let error = await response.text();
+        console.log("error: ", error);
+        setMessageError(error);
+      } else {
+        navigation.navigate("login");
+      }
+    } catch (er) {
+      console.log(er);
+    }
   };
+
   const handleInputError = (
     value: string,
     Regex: RegExp,
@@ -132,6 +147,7 @@ function Signup({
         placeholder="confirm your password"
         error={confirmPasswordError}
       />
+      <ErrorMessage error={messageError} />
       <CustomButton
         text="Sign up"
         action={handleSignup}
