@@ -7,7 +7,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Signup from "./src/screens/Signup";
 
-export type RootStackParamList = {};
+export type RootStackParamList = {
+  home: undefined;
+  login: undefined;
+  signup: undefined;
+};
 
 const Stack = createNativeStackNavigator();
 function App(): React.JSX.Element {

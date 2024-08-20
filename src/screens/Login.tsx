@@ -5,6 +5,7 @@ import { Input } from "../components/Input";
 import { UsersFormContainer } from "../components/UsersForm/UsersFormContainer";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../App";
+import ErrorMessage from "../components/ErrorMessage";
 
 //TODO: hide/show password
 //TODO: forgot password
@@ -14,9 +15,10 @@ function Login({
 }: NativeStackScreenProps<RootStackParamList>): React.JSX.Element {
   const [usernameOrEmail, setUsernameOrEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [messageError, setMessageError] = useState<string | boolean>(false);
 
   const handleLogin = async () => {
-    const request = await fetch(`${API_URL}/api/auth/signin`, {
+    const response = await fetch(`${API_URL}/api/auth/signin`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -26,6 +28,16 @@ function Login({
         password: password,
       }),
     });
+    if (response.status === 400) {
+      let error = await response.text();
+      console.log("error: ", error, response.status);
+      setMessageError(error);
+    } else if (response.status === 403) {
+      console.log("error: invalid user or password!", response.status);
+      setMessageError("Invalid user or password!");
+    } else {
+      navigation.navigate("home");
+    }
   };
 
   return (
@@ -43,6 +55,7 @@ function Login({
         label="password"
         placeholder="enter your password"
       />
+      <ErrorMessage error={messageError} />
       <CustomButton text="login" action={handleLogin} />
     </UsersFormContainer>
   );
