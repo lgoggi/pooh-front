@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { SafeAreaView, ScrollView, StyleSheet } from "react-native";
 import Login from "./src/screens/Login";
 import { ThemeProvider } from "styled-components/native";
@@ -6,6 +6,7 @@ import { theme } from "./src/styles/theme";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Signup from "./src/screens/Signup";
+import Home from "./src/screens/Home";
 
 export type RootStackParamList = {
   home: undefined;
@@ -15,13 +16,22 @@ export type RootStackParamList = {
 
 const Stack = createNativeStackNavigator();
 function App(): React.JSX.Element {
+  const [isLogged, setIsLogged] = useState(true);
   return (
     <SafeAreaView style={styles.container}>
       <NavigationContainer>
         <ThemeProvider theme={theme}>
           <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="login" component={Login} />
-            <Stack.Screen name="signup" component={Signup} />
+            {isLogged ? (
+              <Stack.Screen name="home" component={Home} />
+            ) : (
+              <>
+                <Stack.Screen name="login">
+                  {(props) => <Login {...props} setIsLogged={setIsLogged} />}
+                </Stack.Screen>
+                <Stack.Screen name="signup" component={Signup} />
+              </>
+            )}
           </Stack.Navigator>
         </ThemeProvider>
       </NavigationContainer>

@@ -10,9 +10,12 @@ import ErrorMessage from "../components/ErrorMessage";
 //TODO: hide/show password
 //TODO: forgot password
 
-function Login({
-  navigation,
-}: NativeStackScreenProps<RootStackParamList>): React.JSX.Element {
+interface IProps {
+  navigation: NativeStackScreenProps<RootStackParamList>;
+  setIsLogged: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function Login({ navigation, setIsLogged }: IProps): React.JSX.Element {
   const [usernameOrEmail, setUsernameOrEmail] = useState("");
   const [password, setPassword] = useState("");
   const [messageError, setMessageError] = useState<string | boolean>(false);
@@ -36,7 +39,7 @@ function Login({
       console.log("error: invalid user or password!", response.status);
       setMessageError("Invalid user or password!");
     } else {
-      navigation.navigate("home");
+      setIsLogged(true);
     }
   };
 

@@ -4,11 +4,12 @@ interface IProps {
   text: string;
   action: () => void;
   disabled?: boolean;
+  padding?: string;
 }
 
-const CustomButton = ({ text, action, disabled = false }: IProps) => {
+const CustomButton = ({ text, action, disabled = false, padding }: IProps) => {
   return (
-    <Button onPress={action} disabled={disabled}>
+    <Button onPress={action} disabled={disabled} padding={padding}>
       <Text>{text}</Text>
     </Button>
   );

@@ -16,5 +16,5 @@ export const LogoImage = styled.Image`
 export const Title = styled.Text`
   color: ${props => props.theme.color.primary};
   font-weight: 800;
-  font-size: ${ props => props.theme.fontSize.big}
+  font-size: ${ props => props.theme.fontSize.large}
 `

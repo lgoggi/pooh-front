@@ -1,7 +1,6 @@
-import { KeyboardAvoidingView, Pressable, Keyboard } from "react-native";
+import { Pressable } from "react-native";
 import { Logo } from "../Logo";
 import { Container, Link, LinkWrapper, SecondaryText, Section } from "./styles";
-import { useEffect } from "react";
 import { useKeyboardVisible } from "../../../hooks/useIsKeyboardVisible";
 
 interface IProps {

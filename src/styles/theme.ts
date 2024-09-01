@@ -9,6 +9,6 @@ export const theme = {
   fontSize: {
     small: "12px",
     default: "16px",
-    big: "20px"
+    large: "20px"
   }
 }
