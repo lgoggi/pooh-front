@@ -7,6 +7,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Signup from "./src/screens/Signup";
 import Home from "./src/screens/Home";
+import { UserProvider } from "./src/providers/UserContext";
 
 export type RootStackParamList = {
   home: undefined;
@@ -16,26 +17,28 @@ export type RootStackParamList = {
 
 const Stack = createNativeStackNavigator();
 function App(): React.JSX.Element {
-  const [isLogged, setIsLogged] = useState(true);
+  const [isLogged, setIsLogged] = useState(false);
   return (
-    <SafeAreaView style={styles.container}>
-      <NavigationContainer>
-        <ThemeProvider theme={theme}>
-          <Stack.Navigator screenOptions={{ headerShown: false }}>
-            {isLogged ? (
-              <Stack.Screen name="home" component={Home} />
-            ) : (
-              <>
-                <Stack.Screen name="login">
-                  {(props) => <Login {...props} setIsLogged={setIsLogged} />}
-                </Stack.Screen>
-                <Stack.Screen name="signup" component={Signup} />
-              </>
-            )}
-          </Stack.Navigator>
-        </ThemeProvider>
-      </NavigationContainer>
-    </SafeAreaView>
+    <UserProvider>
+      <SafeAreaView style={styles.container}>
+        <NavigationContainer>
+          <ThemeProvider theme={theme}>
+            <Stack.Navigator screenOptions={{ headerShown: false }}>
+              {isLogged ? (
+                <Stack.Screen name="home" component={Home} />
+              ) : (
+                <>
+                  <Stack.Screen name="login">
+                    {(props) => <Login {...props} setIsLogged={setIsLogged} />}
+                  </Stack.Screen>
+                  <Stack.Screen name="signup" component={Signup} />
+                </>
+              )}
+            </Stack.Navigator>
+          </ThemeProvider>
+        </NavigationContainer>
+      </SafeAreaView>
+    </UserProvider>
   );
 }
 

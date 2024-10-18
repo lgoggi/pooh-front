@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CustomButton from "../components/CustomButton";
 import { API_URL } from "@env";
 import { Input } from "../components/Input";
@@ -6,6 +6,7 @@ import { UsersFormContainer } from "../components/UsersForm/UsersFormContainer";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../App";
 import ErrorMessage from "../components/ErrorMessage";
+import { UserContext } from "../providers/UserContext";
 
 //TODO: hide/show password
 //TODO: forgot password
@@ -16,12 +17,14 @@ interface IProps {
 }
 
 function Login({ navigation, setIsLogged }: IProps): React.JSX.Element {
+  const { user, setUser } = useContext(UserContext);
   const [usernameOrEmail, setUsernameOrEmail] = useState("");
   const [password, setPassword] = useState("");
   const [messageError, setMessageError] = useState<string | boolean>(false);
 
   const handleLogin = async () => {
-    const response = await fetch(`${API_URL}/api/auth/signin`, {
+    setMessageError(false);
+    const response = await fetch(`${API_URL}/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -39,9 +42,15 @@ function Login({ navigation, setIsLogged }: IProps): React.JSX.Element {
       console.log("error: invalid user or password!", response.status);
       setMessageError("Invalid user or password!");
     } else {
+      // const userInfo = await response.json();
+      setUser(await response.json());
       setIsLogged(true);
     }
   };
+
+  useEffect(() => {
+    if (user?.token) handleLogin();
+  }, []);
 
   return (
     <UsersFormContainer redirectLink="Signup" navigation={navigation}>
