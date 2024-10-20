@@ -42,15 +42,13 @@ function Login({ navigation, setIsLogged }: IProps): React.JSX.Element {
       console.log("error: invalid user or password!", response.status);
       setMessageError("Invalid user or password!");
     } else {
-      // const userInfo = await response.json();
       setUser(await response.json());
-      setIsLogged(true);
     }
   };
 
   useEffect(() => {
-    if (user?.token) handleLogin();
-  }, []);
+    if (user) setIsLogged(true);
+  }, [user]);
 
   return (
     <UsersFormContainer redirectLink="Signup" navigation={navigation}>

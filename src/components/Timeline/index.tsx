@@ -1,9 +1,19 @@
-import { useState } from "react";
-import Pooh from "../Pooh";
+import { useEffect, useState } from "react";
+import Pooh, { IPooh } from "../Pooh";
 import { Container, HighlightedText } from "./styles";
+import { API_URL } from "@env";
 
 const Timeline = () => {
-  const [poohList, setPoohList] = useState<Array<any>>();
+  const [poohList, setPoohList] = useState<Array<IPooh>>();
+  const getTimeline = async () => {
+    const response = await fetch(`${API_URL}/pooh/see`);
+    setPoohList(await response.json());
+    console.log("response: ", poohList);
+  };
+
+  useEffect(() => {
+    getTimeline();
+  }, []);
   return (
     <Container
       bounces={false}
@@ -19,7 +29,7 @@ const Timeline = () => {
       }}
     >
       {poohList ? (
-        poohList.map((key) => <Pooh key={key}></Pooh>)
+        poohList.map((pooh) => <Pooh key={pooh.id} pooh={pooh}></Pooh>)
       ) : (
         <HighlightedText>Nothing to see yet...</HighlightedText>
       )}
