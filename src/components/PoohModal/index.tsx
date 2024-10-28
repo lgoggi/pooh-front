@@ -37,7 +37,7 @@ const PoohModal = ({ showModal, setShowPoohModal }: IProps) => {
   };
 
   useEffect(() => {
-    setCounter((prev) => prev - text.length);
+    setCounter(200 - text.length);
   }, [text]);
 
   return (
@@ -50,6 +50,7 @@ const PoohModal = ({ showModal, setShowPoohModal }: IProps) => {
               onChangeText={(newValue) => setText(newValue)}
               textAlignVertical="top"
               value={text}
+              autoFocus
             ></Input>
             <Row>
               <Counter>{counter} characters left </Counter>

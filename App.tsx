@@ -11,6 +11,7 @@ import { UserProvider } from "./src/providers/UserContext";
 
 export type RootStackParamList = {
   home: undefined;
+  profile: { id: string } | undefined;
   login: undefined;
   signup: undefined;
 };

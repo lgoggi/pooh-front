@@ -1,4 +1,6 @@
-import { Text, View } from "react-native";
+import { Content, ContentWrapper, PoohWrapper } from "./styles";
+import Username from "../UI/Username";
+import ProfilePicture from "../UI/ProfilePicture";
 
 export interface IPooh {
   author: string;
@@ -12,9 +14,13 @@ interface IProps {
 
 const Pooh = ({ pooh }: IProps) => {
   return (
-    <View>
-      <Text>{pooh.text}</Text>
-    </View>
+    <PoohWrapper>
+      <ProfilePicture username={pooh.author}></ProfilePicture>
+      <ContentWrapper>
+        <Username username={pooh.author}></Username>
+        <Content>{pooh.text}</Content>
+      </ContentWrapper>
+    </PoohWrapper>
   );
 };
 export default Pooh;
