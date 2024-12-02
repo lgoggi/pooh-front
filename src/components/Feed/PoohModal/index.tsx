@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { Container, Content, Counter, Input, Row, Wrapper } from "./styles";
-import CustomButton from "../CustomButton";
+import CustomButton from "../../UI/CustomButton";
 import { API_URL } from "@env";
-import { UserContext } from "../../providers/UserContext";
+import { UserContext } from "../../../providers/UserContext";
 import { ActivityIndicator } from "react-native";
 
 interface IProps {

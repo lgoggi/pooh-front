@@ -1,6 +1,6 @@
 import { Content, ContentWrapper, PoohWrapper } from "./styles";
-import Username from "../UI/Username";
-import ProfilePicture from "../UI/ProfilePicture";
+import Username from "../../UI/Username";
+import ProfilePicture from "../../UI/ProfilePicture";
 
 export interface IPooh {
   author: string;

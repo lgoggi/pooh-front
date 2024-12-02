@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import CustomButton from "../components/CustomButton";
+import CustomButton from "../components/UI/CustomButton";
 import { API_URL } from "@env";
-import { Input } from "../components/Input";
+import { Input } from "../components/UI/Input";
 import { UsersFormContainer } from "../components/UsersForm/UsersFormContainer";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../App";
 import userMask from "../utils/masks/userMask";
 import { Text } from "react-native";
-import ErrorMessage from "../components/ErrorMessage";
+import ErrorMessage from "../components/UI/ErrorMessage";
 
 function Signup({
   navigation,

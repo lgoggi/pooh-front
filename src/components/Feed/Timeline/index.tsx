@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import Pooh, { IPooh } from "../Pooh";
 import { Container, HighlightedText } from "./styles";
 import { API_URL } from "@env";
 import { FlatList } from "react-native";
+import Pooh, { IPooh } from "../Pooh";
 
 const Timeline = () => {
   const [poohList, setPoohList] = useState<Array<IPooh>>();

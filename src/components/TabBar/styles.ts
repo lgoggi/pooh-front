@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 
 export const Wrapper = styled.View`
   align-items: center;
-  background-color: #292f34;
+  background-color: ${(props) => props.theme.color.gray["800"]};
   border-radius: 16px 16px 0px 0px;
   bottom: 0;
   display: flex;
