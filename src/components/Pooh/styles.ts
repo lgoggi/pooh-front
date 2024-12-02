@@ -24,4 +24,5 @@ export const ContentWrapper = styled.View`
 export const Content = styled.Text`
   color: ${(props) => props.theme.color.secondary};
   font-size: ${(props) => props.theme.fontSize.default};
+  padding: 0 4px;
 `

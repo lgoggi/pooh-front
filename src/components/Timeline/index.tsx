@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Pooh, { IPooh } from "../Pooh";
 import { Container, HighlightedText } from "./styles";
 import { API_URL } from "@env";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { FlatList } from "react-native";
 
 const Timeline = () => {

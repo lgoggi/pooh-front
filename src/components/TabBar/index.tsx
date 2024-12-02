@@ -1,9 +1,7 @@
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import { PlatformPressable } from "@react-navigation/elements";
-import { Text, View } from "react-native";
 import { Title, Wrapper } from "./styles";
 import React from "react";
-import { ParamListBase } from "@react-navigation/native";
 
 const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
   const onPress = (route: any) => {

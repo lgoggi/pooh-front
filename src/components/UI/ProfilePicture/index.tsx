@@ -1,8 +1,8 @@
 import { Pressable } from "react-native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
-import { RootStackParamList } from "../../../../App";
 import { Image } from "./styles";
+import { bottomTabParamList } from "../../../screens/Home";
 
 interface IProps {
   username: string;
@@ -10,9 +10,9 @@ interface IProps {
 
 const ProfilePicture = ({ username }: IProps) => {
   const navigation =
-    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+    useNavigation<BottomTabNavigationProp<bottomTabParamList>>();
   return (
-    <Pressable onPress={() => navigation.navigate("profile", { id: username })}>
+    <Pressable onPress={() => navigation.navigate("Profile", { id: username })}>
       <Image source={require("../../../assets/pooh2.png")}></Image>
     </Pressable>
   );

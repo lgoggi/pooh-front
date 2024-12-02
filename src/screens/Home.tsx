@@ -5,6 +5,10 @@ import Feed from "./Feed";
 import TabBar from "../components/TabBar";
 import Profile from "./Profile";
 
+export type bottomTabParamList = {
+  Feed: undefined;
+  Profile: { id: string } | undefined;
+};
 const Tab = createBottomTabNavigator();
 const Home = ({ navigation }: NativeStackScreenProps<RootStackParamList>) => {
   return (

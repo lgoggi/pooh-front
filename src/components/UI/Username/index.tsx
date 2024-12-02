@@ -1,8 +1,8 @@
 import { Pressable } from "react-native";
 import { UsernameText } from "./styles";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
-import { RootStackParamList } from "../../../../App";
+import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
+import { bottomTabParamList } from "../../../screens/Home";
 
 interface IProps {
   username: string;
@@ -10,10 +10,10 @@ interface IProps {
 
 const Username = ({ username }: IProps) => {
   const navigation =
-    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+    useNavigation<BottomTabNavigationProp<bottomTabParamList>>();
   return (
     <Pressable
-      onPress={() => navigation.navigate("profile", { id: username })}
+      onPress={() => navigation.navigate("Profile", { id: username })}
       style={{ paddingHorizontal: 4 }}
     >
       <UsernameText>{username}</UsernameText>
